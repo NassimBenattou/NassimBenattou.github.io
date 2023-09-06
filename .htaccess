@@ -11,5 +11,13 @@ ExpiresByType font/ttf "access plus 1 year"
 ExpiresByType application/javascript "access plus 1 year"
 ExpiresByType text/css "access plus 1 year"
 </IfModule>
+<IfModule mod_deflate.c>
+    # Compress CSS, JavaScript, text, and XML
+    AddOutputFilterByType DEFLATE text/css application/javascript text/html text/xml
 
+    # Exclude browser-specific file types
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
 AddType image/webp .webp
